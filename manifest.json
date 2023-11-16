@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Tab Exporter",
-  "version": "1.0",
-  "description": "Export tab group URLs",
+  "name": "Tab Importer n Exporter",
+  "version": "1.0.0",
+  "description": "'Tab Importer n Exporter' is your go-to solution for efficient tab management in Chrome. Inspired by the need to seamlessly transition between work and home environments, this extension empowers you to effortlessly export and import your tab configurations, ensuring a smooth continuation of your browsing experience across devices.",
   "permissions": ["tabs", "storage"],
   "action": {
     "default_popup": "popup.html",
