@@ -98,22 +98,21 @@ async function download(groupId) {
 };
 
 const createTabs = async (tabList) => {
-  const tabIds = [];
+  const tabPromises = tabList.map(async (tabInfo) => {
+    return await chrome.tabs.create({ url: tabInfo.url });
+  });
 
-  for (const tabInfo of tabList) {
-    const createdTab = await chrome.tabs.create({ url: tabInfo.url });
-    tabIds.push(createdTab.id);
-  }
-
+  const tabs = await Promise.all(tabPromises);
+  const tabIds = tabs.map((tab) => tab.id);
+  
   const groupId = await chrome.tabs.group({ tabIds });
 
   chrome.tabGroups.update(groupId, {
     collapsed: true,
-    title: "importer",
-    color: "grey",
+    title: "imported",
+    color: "red",
   });
 };
-
 
 function readFile(file) {
   return new Promise((resolve, reject) => {
